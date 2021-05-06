@@ -18,12 +18,14 @@ public class UserMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO user (email, password, name, phoneNumber, role) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
+                ps.setString(3, user.getName());
+                ps.setString(4, user.getPhoneNumber());
                 ps.setString(3, user.getRole());
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
@@ -46,7 +48,7 @@ public class UserMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "SELECT id, role FROM users WHERE email=? AND password=?";
+            String sql = "SELECT user_id, role FROM user WHERE email=? AND password=?";
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
