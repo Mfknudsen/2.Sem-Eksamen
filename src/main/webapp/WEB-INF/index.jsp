@@ -21,6 +21,7 @@
                 Main page for this 2. semester start project used at cphbusiness.dk
             </div>
 
+
             <c:if test="${sessionScope.role == 'employee' }">
                 <p style="font-size: larger">This is what you can do,
                     since your are logged in as an employee</p>
@@ -28,9 +29,32 @@
              </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
+
                 <p style="font-size: larger">This is what you can do, since your
                     are logged in as a customer</p>
                 <p><a href="fc/customerpage">Customer Page</a>
+
+                <form method="post" action="${pageContext.request.contextPath}/fc/inquiry">
+                    <label for="length">Længde</label>
+                    <input type="number" id="length" name="length" step="0">
+                    <label for="width">Bredde</label>
+                    <input type="number" id="width" name="width">
+                    <input type="submit">
+                </form>
+            </c:if>
+
+            <c:if test="${requestScope.error != null}">
+                <div class="alert alert-danger alert-dismissible fade show">
+                    ${requestScope.error}
+                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
+                </div>
+            </c:if>
+
+            <c:if test="${requestScope.update != null}">
+                <div class="alert alert-success alert-dismissible fade show">
+                    ${requestScope.update}
+                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
+                </div>
             </c:if>
 
         </div>
