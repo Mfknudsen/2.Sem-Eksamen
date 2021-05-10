@@ -11,7 +11,7 @@ public class PlannaerFacade {
     }
 
     public void MakeList(float length, float width){
-        Styklist list = planner.Calculate(length, width);
-        System.out.println((int)list.price);
+        Styklist list = planner.Calculate(length, width, false,0,0);
+        System.out.println((int)list.getPrice());
     }
 }
