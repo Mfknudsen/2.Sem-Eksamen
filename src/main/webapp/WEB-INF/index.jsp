@@ -26,6 +26,33 @@
                 <p style="font-size: larger">This is what you can do,
                     since your are logged in as an employee</p>
                  <p><a href="fc/employeepage">Employee Page</a>
+
+                <div>
+                    <form method="post" id="1" action="${pageContext.request.contextPath}/fc/employeepage">
+                        <input type="hidden" name="name" value="Robin"/>
+                        <input type="hidden" name="length" value="130"/>
+                        <input type="hidden" name="width" value="880"/>
+
+                        <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">User</th>
+                                        <th scope="col">Length</th>
+                                        <th scope="col">Width</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr onclick="clickSubmit(1)" style="cursor : pointer;">
+                                        <th scope="row">1</th>
+                                        <td>Robin</td>
+                                        <td>130</td>
+                                        <td>880</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </form>
+                </div>
              </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
@@ -58,6 +85,13 @@
             </c:if>
 
         </div>
+
+        <script type="text/javascript">
+           function clickSubmit(id)
+           {
+               document.getElementById(id).submit();
+           }
+        </script>
 
     </jsp:body>
 </t:genericpage>
