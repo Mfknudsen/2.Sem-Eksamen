@@ -1,6 +1,7 @@
 package web.commands;
 
 import business.entities.User;
+import business.services.PlannaerFacade;
 import business.services.UserFacade;
 import business.exceptions.UserException;
 
@@ -11,11 +12,15 @@ import javax.servlet.http.HttpSession;
 public class LoginCommand extends CommandUnprotectedPage
 {
     private UserFacade userFacade;
+    //Test
+    PlannaerFacade plannaerFacade;
 
     public LoginCommand(String pageToShow)
     {
         super(pageToShow);
         userFacade = new UserFacade(database);
+        //Test
+        plannaerFacade = new PlannaerFacade();
     }
 
     @Override
@@ -32,6 +37,8 @@ public class LoginCommand extends CommandUnprotectedPage
         session.setAttribute("user", user);
         session.setAttribute("role", user.getRole());
         session.setAttribute("email", email);
+
+        plannaerFacade.MakeList(4, 5);
 
         String pageToShow =  user.getRole() + "page";
         return REDIRECT_INDICATOR + pageToShow;
