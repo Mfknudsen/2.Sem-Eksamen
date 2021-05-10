@@ -18,7 +18,7 @@ public class orderMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO order (`user_id`, `lengthCM`, `widthCM`) VALUES (?,?,?)";
+            String sql = "INSERT INTO `order` (`user_id`, `lengthCM`, `widthCM`) VALUES (?,?,?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
