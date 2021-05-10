@@ -28,7 +28,7 @@
                  <p><a href="fc/employeepage">Employee Page</a>
 
                 <div>
-                    <form method="post" id="1" action="${pageContext.request.contextPath}/fc/employeepage">
+                    <form method="post" id="1" action="${pageContext.request.contextPath}/fc/result">
                         <input type="hidden" name="name" value="Robin"/>
                         <input type="hidden" name="length" value="130"/>
                         <input type="hidden" name="width" value="880"/>
