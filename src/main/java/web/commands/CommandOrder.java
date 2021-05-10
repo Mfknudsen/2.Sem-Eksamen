@@ -1,16 +1,16 @@
 package web.commands;
 
 import business.exceptions.UserException;
-import business.services.InquiryFacade;
+import business.services.orderFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CommandInquiry extends CommandUnprotectedPage
+public class CommandOrder extends CommandUnprotectedPage
 {
-    InquiryFacade inquiryFacade = new InquiryFacade(database);
+    orderFacade orderFacade = new orderFacade(database);
 
-    public CommandInquiry(String pageToShow) {
+    public CommandOrder(String pageToShow) {
         super(pageToShow);
     }
 
@@ -21,7 +21,7 @@ public class CommandInquiry extends CommandUnprotectedPage
         float width = Float.parseFloat(request.getParameter("width"));
 
 
-        int update = inquiryFacade.add(1, length, width);
+        int update = orderFacade.add(1, length, width);
         if (!(update > 0))
         {
             request.setAttribute("error", "Could not add inquiry. Possibly because user id does not exist");

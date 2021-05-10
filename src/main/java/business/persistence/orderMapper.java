@@ -5,11 +5,11 @@ import business.exceptions.UserException;
 
 import java.sql.*;
 
-public class InquiryMapper
+public class orderMapper
 {
     private Database database;
 
-    public InquiryMapper(Database database)
+    public orderMapper(Database database)
     {
         this.database = database;
     }
@@ -18,7 +18,7 @@ public class InquiryMapper
     {
         try (Connection connection = database.connect())
         {
-            String sql = "INSERT INTO inquiry (`user_id`, `lengthCM`, `widthCM`) VALUES (?,?,?)";
+            String sql = "INSERT INTO order (`user_id`, `lengthCM`, `widthCM`) VALUES (?,?,?)";
 
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
             {
