@@ -61,7 +61,7 @@
                     are logged in as a customer</p>
                 <p><a href="fc/customerpage">Customer Page</a>
 
-                <form method="post" action="${pageContext.request.contextPath}/fc/inquiry">
+                <form method="post" action="${pageContext.request.contextPath}/fc/sendorder">
                     <label for="length">Længde</label>
                     <input type="number" id="length" name="length" step="0">
                     <label for="width">Bredde</label>
