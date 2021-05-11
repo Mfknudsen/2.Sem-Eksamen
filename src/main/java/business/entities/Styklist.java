@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Styklist {
     float price;
-    HashMap<String, Integer> totalCounts = new HashMap<>();
+    public HashMap<String, Integer> totalCounts = new HashMap<>();
 
     public Styklist() {
         totalCounts.put("25x200x360", 0);
