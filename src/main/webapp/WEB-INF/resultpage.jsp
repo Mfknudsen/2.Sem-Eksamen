@@ -124,6 +124,30 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Dækningsgrad eller prisforslag</th>
+                            <th>Prisforslag ved salg</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>"Hard coded value ex. $800"</td>
+                            <td>
+                                <form method="get" id="customPrice">
+                                    <input type="number">
+                                </form>
+                                <p></p>
+                                <button type="submit" form="customPrice" value="Submit">Submit</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
              </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
