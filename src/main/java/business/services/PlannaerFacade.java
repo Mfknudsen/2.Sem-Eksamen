@@ -10,8 +10,8 @@ public class PlannaerFacade {
         this.planner = new Planner();
     }
 
-    public void MakeList(float length, float width){
+    public Styklist MakeList(float length, float width){
         Styklist list = planner.Calculate(length, width, false,0,0);
-        System.out.println((int)list.getPrice());
+        return list;
     }
 }

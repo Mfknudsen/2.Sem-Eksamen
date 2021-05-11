@@ -1,6 +1,8 @@
 package web.commands;
 
+import business.entities.Styklist;
 import business.exceptions.UserException;
+import business.services.PlannaerFacade;
 import business.services.orderFacade;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,13 +22,18 @@ public class CommandOrder extends CommandUnprotectedPage
         float length = Float.parseFloat(request.getParameter("length"));
         float width = Float.parseFloat(request.getParameter("width"));
 
+        PlannaerFacade plannaerFacade = new PlannaerFacade();
+
+        Styklist list = plannaerFacade.MakeList(length, width);
 
         int update = orderFacade.add(1, length, width);
         if (!(update > 0))
         {
             request.setAttribute("error", "Could not add inquiry. Possibly because user id does not exist");
         }
-        request.setAttribute("update", "Din forspørgsel er blevet sendt!");
+
+        request.setAttribute("update", "Din forspørgsel er blevet sendt! Pris: " + list.getPrice() + "kr.");
+
         System.out.println("Number of updated rows: " + update);
 
         return pageToShow;
