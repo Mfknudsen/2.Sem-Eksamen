@@ -34,7 +34,8 @@ public class PlannerMapper {
                     float pricePerUnit = rs.getFloat("pricePerUnit");
                     int lengthSQL = rs.getInt("length");
                     String description = rs.getString("description");
-                    materialsList.add(new material(id, name, pricePerUnit, lengthSQL, description));
+                    String category = rs.getString("category");
+                    materialsList.add(new material(id, name, pricePerUnit, lengthSQL, description, category));
                 }
                 return materialsList;
             }
@@ -85,7 +86,7 @@ public class PlannerMapper {
         return result;
     }
 
-    private List<material> CalculateStolper(List<material> list)
+    private List<material> CalculateStolper(float length,List<material> list)
     {
 //        11 i databasen er en stolpe
 
