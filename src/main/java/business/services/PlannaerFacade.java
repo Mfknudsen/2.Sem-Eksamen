@@ -5,7 +5,6 @@ import business.exceptions.UserException;
 import business.persistence.Database;
 import business.persistence.PlannerMapper;
 
-import javax.xml.crypto.Data;
 import java.util.List;
 
 public class PlannaerFacade {
