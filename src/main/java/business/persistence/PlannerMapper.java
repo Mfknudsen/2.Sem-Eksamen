@@ -87,16 +87,19 @@ public class PlannerMapper {
 
     private void CalculateStolper()
     {
+//        11 i databasen er en stolpe
 
     }
 
     private void CalculateRem()
     {
+//        1, 2, 3 og 4 er Rem
 
     }
 
     private void CalculateSpær()
     {
+//        8, 9 og 10 er spær
 
     }
 
