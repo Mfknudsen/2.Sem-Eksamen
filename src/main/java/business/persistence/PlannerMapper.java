@@ -109,17 +109,35 @@ public class PlannerMapper {
 
     private List<material> CalculateStolper(float length,List<material> list)
     {
-//        11 i databasen er en stolpe
+//        return list<material> af stolpe med quantity sat til mere end 1
+        int i = 0;
+        while(!(list.get(i).getCategory().equals("stolpe"))) {
+           i++;
+        }
+        material stolpe = list.get(i);
+
         return null;
     }
 
-    private List<material> CalculateRem(List<material> list) {
-//        1, 2, 3 og 4 er Rem
+    private List<material> CalculateRem(float length,List<material> list)
+    {
+//        return list<material> af rem med quantity sat til mere end 1
+        int i = 0;
+        while(!(list.get(i).getCategory().equals("rem"))) {
+            i++;
+        }
+        material rem = list.get(i);
         return null;
     }
 
-    private List<material> CalculateSpær(List<material> list) {
-//        8, 9 og 10 er spær
+    private List<material> CalculateSpær(float width,List<material> list)
+    {
+//        return list<material> af spær med quantity sat til mere end 1
+        int i = 0;
+        while(!(list.get(i).getCategory().equals("spær"))) {
+            i++;
+        }
+        material spær = list.get(i);
         return null;
     }
 
@@ -127,9 +145,9 @@ public class PlannerMapper {
         List<material> list = listOfMaterials();
         List<material> materials = new ArrayList<>();
 
-        materials.addAll(CalculateStolper(list));
-        materials.addAll(CalculateRem(list));
-        materials.addAll(CalculateSpær(list));
+        materials.addAll(CalculateStolper(length,list));
+        materials.addAll(CalculateRem(length,list));
+        materials.addAll(CalculateSpær(width,list));
 
 //        calculate needed materials
 //        add to materials list materials needed with quantity set to more than 0
