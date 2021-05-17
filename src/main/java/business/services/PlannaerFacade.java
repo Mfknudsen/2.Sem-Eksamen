@@ -15,12 +15,8 @@ public class PlannaerFacade {
     }
 
     public List<material> MakeList(float length, float width) throws UserException {
-
-        List<material> list = plannerMapper.listOfMaterials();
-
 //        calculate materials needed from "list"
-        List<material> newList = plannerMapper.Calculate(length, width, list);
-
+        List<material> newList = plannerMapper.Calculate(length, width);
         return newList;
     }
 }

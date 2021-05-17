@@ -85,9 +85,28 @@ public class PlannerMapper {
         return result;
     }
 
-    public List<material> Calculate(float length, float width, List<material> list) {
+    private void CalculateStolper()
+    {
 
+    }
+
+    private void CalculateRem()
+    {
+
+    }
+
+    private void CalculateSpær()
+    {
+
+    }
+
+    public List<material> Calculate(float length, float width) throws UserException {
+        List<material> list = listOfMaterials();
         List<material> materials = new ArrayList<>();
+
+        CalculateStolper();
+        CalculateRem();
+        CalculateSpær();
 
 //        calculate needed materials
 //        add to materials list materials needed with quantity set to more than 0
