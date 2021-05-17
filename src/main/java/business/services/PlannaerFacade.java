@@ -1,17 +1,27 @@
 package business.services;
 
-import business.entities.Styklist;
-import business.persistence.Planner;
+import business.entities.material;
+import business.exceptions.UserException;
+import business.persistence.Database;
+import business.persistence.PlannerMapper;
+
+import javax.xml.crypto.Data;
+import java.util.List;
 
 public class PlannaerFacade {
-    Planner planner;
+    PlannerMapper plannerMapper;
 
-    public PlannaerFacade() {
-        this.planner = new Planner();
+    public PlannaerFacade(Database database) {
+        this.plannerMapper = new PlannerMapper(database);
     }
 
-    public Styklist MakeList(float length, float width){
-        Styklist list = planner.Calculate(length, width, false,0,0);
-        return list;
+    public List<material> MakeList(float length, float width) throws UserException {
+
+        List<material> list = plannerMapper.listOfMaterials();
+
+//        calculate materials needed from "list"
+        List<material> newList = plannerMapper.Calculate(length, width, list);
+
+        return newList;
     }
 }
