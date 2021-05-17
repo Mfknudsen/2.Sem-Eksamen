@@ -109,7 +109,7 @@ public class PlannerMapper {
 
     private List<material> CalculateStolper(float length,List<material> list)
     {
-//        return list<material> af stolpe med quantity sat til mere end 1
+//        return list<material> af stolpe med quantity sat til mere end 0
         int i = 0;
         while(!(list.get(i).getCategory().equals("stolpe"))) {
            i++;
@@ -121,7 +121,7 @@ public class PlannerMapper {
 
     private List<material> CalculateRem(float length,List<material> list)
     {
-//        return list<material> af rem med quantity sat til mere end 1
+//        return list<material> af rem med quantity sat til mere end 0
         int i = 0;
         while(!(list.get(i).getCategory().equals("rem"))) {
             i++;
@@ -132,7 +132,7 @@ public class PlannerMapper {
 
     private List<material> CalculateSpær(float width,List<material> list)
     {
-//        return list<material> af spær med quantity sat til mere end 1
+//        return list<material> af spær med quantity sat til mere end 0
         int i = 0;
         while(!(list.get(i).getCategory().equals("spær"))) {
             i++;
