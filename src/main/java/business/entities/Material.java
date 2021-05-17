@@ -1,12 +1,12 @@
 package business.entities;
 
-public class material {
+public class Material {
     private int id, length;
     private String name, description, category;
     private float pricePerUnit;
     private int quantity = 0;
 
-    public material(int id, String name, float pricePerUnit, int length, String description, String category)
+    public Material(int id, String name, float pricePerUnit, int length, String description, String category)
     {
        this.id = id;
        this.name = name;

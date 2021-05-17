@@ -30,6 +30,7 @@ public abstract class Command
         commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
         commands.put("sendorder", new CommandOrder("index"));
         commands.put("result", new CommandUnprotectedPage("resultpage"));
+        commands.put("orders", new CommandOrdersPage("orders", "employee"));
     }
 
     public static Command fromPath(

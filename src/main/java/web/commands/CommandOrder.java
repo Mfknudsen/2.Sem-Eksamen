@@ -1,19 +1,18 @@
 package web.commands;
 
-import business.entities.Styklist;
 import business.exceptions.UserException;
-import business.services.PlannaerFacade;
-import business.services.orderFacade;
+import business.services.OrderFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CommandOrder extends CommandUnprotectedPage
 {
-    orderFacade orderFacade = new orderFacade(database);
+    OrderFacade orderFacade;
 
     public CommandOrder(String pageToShow) {
         super(pageToShow);
+        this.orderFacade = new OrderFacade(database);
     }
 
     @Override

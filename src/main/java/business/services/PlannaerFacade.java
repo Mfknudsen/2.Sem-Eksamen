@@ -1,6 +1,6 @@
 package business.services;
 
-import business.entities.material;
+import business.entities.Material;
 import business.exceptions.UserException;
 import business.persistence.Database;
 import business.persistence.PlannerMapper;
@@ -14,9 +14,9 @@ public class PlannaerFacade {
         this.plannerMapper = new PlannerMapper(database);
     }
 
-    public List<material> MakeList(float length, float width) throws UserException {
+    public List<Material> MakeList(float length, float width) throws UserException {
 //        calculate materials needed from "list"
-        List<material> newList = plannerMapper.Calculate(length, width);
+        List<Material> newList = plannerMapper.Calculate(length, width);
         return newList;
     }
 }

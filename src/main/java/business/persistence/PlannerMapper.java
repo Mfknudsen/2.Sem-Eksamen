@@ -1,12 +1,11 @@
 package business.persistence;
 
 import business.entities.Styklist;
-import business.entities.material;
+import business.entities.Material;
 import business.exceptions.UserException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PlannerMapper {
@@ -16,9 +15,9 @@ public class PlannerMapper {
         this.database = database;
     }
 
-    public List<material> listOfMaterials() throws UserException {
+    public List<Material> listOfMaterials() throws UserException {
 
-        List<material> materialsList = new ArrayList<>();
+        List<Material> materialsList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
             String sql = "SELECT * FROM `fog`.`materials`";
@@ -32,7 +31,7 @@ public class PlannerMapper {
                     int lengthSQL = rs.getInt("length");
                     String description = rs.getString("description");
                     String category = rs.getString("category");
-                    materialsList.add(new material(id, name, pricePerUnit, lengthSQL, description, category));
+                    materialsList.add(new Material(id, name, pricePerUnit, lengthSQL, description, category));
                 }
                 return materialsList;
             } catch (SQLException ex) {
@@ -107,41 +106,41 @@ public class PlannerMapper {
         return result;
     }
 
-    private List<material> CalculateStolper(float length, List<material> list) {
+    private List<Material> CalculateStolper(float length, List<Material> list) {
 //        return list<material> af stolpe med quantity sat til mere end 0
         int i = 0;
         while (!(list.get(i).getCategory().equals("stolpe"))) {
             i++;
         }
-        material stolpe = list.get(i);
+        Material stolpe = list.get(i);
 
         return null;
     }
 
-    private List<material> CalculateRem(float length, List<material> list) {
+    private List<Material> CalculateRem(float length, List<Material> list) {
 //        return list<material> af rem med quantity sat til mere end 0
         int i = 0;
         while (!(list.get(i).getCategory().equals("rem"))) {
             i++;
         }
-        material rem = list.get(i);
+        Material rem = list.get(i);
         return null;
     }
 
-    private List<material> CalculateSpær(float length, List<material> list) {
+    private List<Material> CalculateSpær(float length, List<Material> list) {
 //        return list<material> af spær med quantity sat til mere end 0
         int i = 0;
         while (!(list.get(i).getCategory().equals("spær"))) {
             i++;
         }
-        material spær = list.get(i);
+        Material spær = list.get(i);
         spær.setQuantity((int) ((length / 0.55f) + 1));
         return null;
     }
 
-    public List<material> Calculate(float length, float width) throws UserException {
-        List<material> list = listOfMaterials();
-        List<material> materials = new ArrayList<>();
+    public List<Material> Calculate(float length, float width) throws UserException {
+        List<Material> list = listOfMaterials();
+        List<Material> materials = new ArrayList<>();
 
         materials.addAll(CalculateStolper(length, list));
         materials.addAll(CalculateRem(length, list));

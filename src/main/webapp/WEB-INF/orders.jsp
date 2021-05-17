@@ -13,20 +13,33 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <div>
-            <h2>Our Cool Site</h2>
-
-            <div style="margin-top: 3em;margin-bottom: 3em;">
-                Main page for this 2. semester start project used at cphbusiness.dk
-            </div>
-
-
             <c:if test="${sessionScope.role == 'employee' }">
-                <p style="font-size: larger">This is what you can do,
-                    since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
-
+                <div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Length</th>
+                                <th scope="col">Width</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:if test="${sessionScope.orders != null}">
+                            <c:forEach var="order" items="${sessionScope.orders}">
+                                <form method="post" id="${order.id}" action="${pageContext.request.contextPath}/fc/result">
+                                    <tr onclick="clickSubmit(${order.id})" style="cursor : pointer;">
+                                        <th scope="row">${order.id}</th>
+                                        <td>${order.name}</td>
+                                        <td>${order.length}</td>
+                                        <td>${order.width}</td>
+                                    </tr>
+                                </form>
+                            </c:forEach>
+                        </c:if>
+                        </tbody>
+                    </table>
+                </div>
              </c:if>
 
              <c:if test="${sessionScope.role == 'customer' }">
@@ -35,13 +48,6 @@
                     are logged in as a customer</p>
                 <p><a href="fc/customerpage">Customer Page</a>
 
-                <form method="post" action="${pageContext.request.contextPath}/fc/sendorder">
-                    <label for="length">Længde</label>
-                    <input type="number" id="length" name="length" step="0.1", min="0">
-                    <label for="width">Bredde</label>
-                    <input type="number" id="width" name="width" step="0.1", min="0">
-                    <input type="submit">
-                </form>
             </c:if>
 
             <c:if test="${requestScope.error != null}">
