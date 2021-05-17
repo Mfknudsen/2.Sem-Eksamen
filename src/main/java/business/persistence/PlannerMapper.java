@@ -62,7 +62,7 @@ public class PlannerMapper {
 
         result.totalCounts.put("45x195x600", (int) (Math.floor(length / 0.55f) + 1));
 
-        result.totalCounts.put("97x97", (int)(length / 3.1f + 1) * 2);
+        result.totalCounts.put("97x97", (int) (length / 3.1f + 1) * 2);
 
         result.totalCounts.put("19x100x540", (int) (Math.floor(length / 5.4f) + 1) * 2);
         result.totalCounts.put("19x100x360", (int) (Math.floor(width / 3.6f) + 1));
@@ -86,7 +86,7 @@ public class PlannerMapper {
 
         if (shed && (sLength != 0 && sWidth != 0)) {
             //
-            result.totalCounts.put("97x97", (int)result.totalCounts.get("97x97") + 5);
+            result.totalCounts.put("97x97", (int) result.totalCounts.get("97x97") + 5);
 
             result.totalCounts.put("38x73", 1);
 
@@ -107,37 +107,35 @@ public class PlannerMapper {
         return result;
     }
 
-    private List<material> CalculateStolper(float length,List<material> list)
-    {
+    private List<material> CalculateStolper(float length, List<material> list) {
 //        return list<material> af stolpe med quantity sat til mere end 0
         int i = 0;
-        while(!(list.get(i).getCategory().equals("stolpe"))) {
-           i++;
+        while (!(list.get(i).getCategory().equals("stolpe"))) {
+            i++;
         }
         material stolpe = list.get(i);
 
         return null;
     }
 
-    private List<material> CalculateRem(float length,List<material> list)
-    {
+    private List<material> CalculateRem(float length, List<material> list) {
 //        return list<material> af rem med quantity sat til mere end 0
         int i = 0;
-        while(!(list.get(i).getCategory().equals("rem"))) {
+        while (!(list.get(i).getCategory().equals("rem"))) {
             i++;
         }
         material rem = list.get(i);
         return null;
     }
 
-    private List<material> CalculateSpær(float width,List<material> list)
-    {
+    private List<material> CalculateSpær(float length, List<material> list) {
 //        return list<material> af spær med quantity sat til mere end 0
         int i = 0;
-        while(!(list.get(i).getCategory().equals("spær"))) {
+        while (!(list.get(i).getCategory().equals("spær"))) {
             i++;
         }
         material spær = list.get(i);
+        spær.setQuantity((int) ((length / 0.55f) + 1));
         return null;
     }
 
@@ -145,9 +143,9 @@ public class PlannerMapper {
         List<material> list = listOfMaterials();
         List<material> materials = new ArrayList<>();
 
-        materials.addAll(CalculateStolper(length,list));
-        materials.addAll(CalculateRem(length,list));
-        materials.addAll(CalculateSpær(width,list));
+        materials.addAll(CalculateStolper(length, list));
+        materials.addAll(CalculateRem(length, list));
+        materials.addAll(CalculateSpær(width, list));
 
 //        calculate needed materials
 //        add to materials list materials needed with quantity set to more than 0
