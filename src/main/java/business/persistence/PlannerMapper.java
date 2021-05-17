@@ -85,19 +85,19 @@ public class PlannerMapper {
         return result;
     }
 
-    private void CalculateStolper()
+    private List<material> CalculateStolper(List<material> list)
     {
 //        11 i databasen er en stolpe
 
     }
 
-    private void CalculateRem()
+    private List<material> CalculateRem(List<material> list)
     {
 //        1, 2, 3 og 4 er Rem
 
     }
 
-    private void CalculateSpær()
+    private List<material> CalculateSpær(List<material> list)
     {
 //        8, 9 og 10 er spær
 
@@ -107,9 +107,9 @@ public class PlannerMapper {
         List<material> list = listOfMaterials();
         List<material> materials = new ArrayList<>();
 
-        CalculateStolper();
-        CalculateRem();
-        CalculateSpær();
+        materials.addAll(CalculateStolper(list));
+        materials.addAll(CalculateRem(list));
+        materials.addAll(CalculateSpær(list));
 
 //        calculate needed materials
 //        add to materials list materials needed with quantity set to more than 0
