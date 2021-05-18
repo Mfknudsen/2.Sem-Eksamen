@@ -28,12 +28,17 @@
                         <c:if test="${sessionScope.orders != null}">
                             <c:forEach var="order" items="${sessionScope.orders}">
                                 <form method="post" id="${order.id}" action="${pageContext.request.contextPath}/fc/result">
+
+                                    <input hidden name="length" value="${order.length}">
+                                    <input hidden name="width" value="${order.width}">
+
                                     <tr onclick="clickSubmit(${order.id})" style="cursor : pointer;">
                                         <th scope="row">${order.id}</th>
                                         <td>${order.name}</td>
                                         <td>${order.length}</td>
                                         <td>${order.width}</td>
                                     </tr>
+
                                 </form>
                             </c:forEach>
                         </c:if>
