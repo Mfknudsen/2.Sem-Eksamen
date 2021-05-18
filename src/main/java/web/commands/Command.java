@@ -29,7 +29,7 @@ public abstract class Command
         commands.put("customerpage", new CommandProtectedPage("customerpage", "customer"));
         commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
         commands.put("sendorder", new CommandOrder("index"));
-        commands.put("result", new CommandUnprotectedPage("resultpage"));
+        commands.put("result", new CommandList("resultpage","employee"));
         commands.put("orders", new CommandOrdersPage("orders", "employee"));
     }
 
