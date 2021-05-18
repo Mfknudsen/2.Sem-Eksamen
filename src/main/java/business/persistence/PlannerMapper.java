@@ -6,6 +6,7 @@ import business.exceptions.UserException;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PlannerMapper {
@@ -20,7 +21,7 @@ public class PlannerMapper {
         List<Material> materialsList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM `fog`.`materials`";
+            String sql = "SELECT * FROM `materials`";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
@@ -31,6 +32,10 @@ public class PlannerMapper {
                     int lengthSQL = rs.getInt("length");
                     String description = rs.getString("description");
                     String category = rs.getString("category");
+                    if (category == null)
+                    {
+                        category = "-1";
+                    }
                     materialsList.add(new Material(id, name, pricePerUnit, lengthSQL, description, category));
                 }
                 return materialsList;
@@ -106,36 +111,55 @@ public class PlannerMapper {
         return result;
     }
 
-    private List<Material> CalculateStolper(float length, List<Material> list) {
+    private List<Material> CalculateStolper(float length, List<Material> list) throws UserException {
 //        return list<material> af stolpe med quantity sat til mere end 0
+        List<Material> stolper = new ArrayList<>();
         int i = 0;
-        while (!(list.get(i).getCategory().equals("stolpe"))) {
+        while (!list.get(i).getCategory().equals("stolpe") && i < list.size()) {
             i++;
+        }
+        if (!list.get(i).getCategory().equals("stolpe"))
+        {
+            throw new UserException("Ingen stolpe fundet!");
         }
         Material stolpe = list.get(i);
-
-        return null;
+        stolpe.setQuantity((int) ((length / 301 + 1) * 2));
+        stolper.add(stolpe);
+        return stolper;
     }
 
-    private List<Material> CalculateRem(float length, List<Material> list) {
+    private List<Material> CalculateRem(List<Material> list) throws UserException {
 //        return list<material> af rem med quantity sat til mere end 0
+        List<Material> remmer = new ArrayList<>();
         int i = 0;
-        while (!(list.get(i).getCategory().equals("rem"))) {
+        while (!list.get(i).getCategory().equals("rem") && i < list.size()) {
             i++;
+        }
+        if (!list.get(i).getCategory().equals("rem"))
+        {
+            throw new UserException("Ingen rem fundet!");
         }
         Material rem = list.get(i);
-        return null;
+        rem.setQuantity(2);
+        remmer.add(rem);
+        return remmer;
     }
 
-    private List<Material> CalculateSpær(float length, List<Material> list) {
+    private List<Material> CalculateSpær(float length, List<Material> list) throws UserException {
 //        return list<material> af spær med quantity sat til mere end 0
+        List<Material> xSpær = new ArrayList<>();
         int i = 0;
-        while (!(list.get(i).getCategory().equals("spær"))) {
+        while (!list.get(i).getCategory().equals("spær") && i < list.size()) {
             i++;
         }
+        if (!list.get(i).getCategory().equals("spær"))
+        {
+            throw new UserException("Ingen spær fundet!");
+        }
         Material spær = list.get(i);
-        spær.setQuantity((int) ((length / 0.55f) + 1));
-        return null;
+        spær.setQuantity((int) ((length / 55) + 1));
+        xSpær.add(spær);
+        return xSpær;
     }
 
     public List<Material> Calculate(float length, float width) throws UserException {
@@ -143,8 +167,12 @@ public class PlannerMapper {
         List<Material> materials = new ArrayList<>();
 
         materials.addAll(CalculateStolper(length, list));
-        materials.addAll(CalculateRem(length, list));
+        materials.addAll(CalculateRem(list));
         materials.addAll(CalculateSpær(width, list));
+        for (Material items:materials)
+        {
+            System.out.println(items.getId() + " " + items.getName() + " " + items.getLength() + " " + items.getQuantity() + items.getDescription());
+        }
 
 //        calculate needed materials
 //        add to materials list materials needed with quantity set to more than 0
