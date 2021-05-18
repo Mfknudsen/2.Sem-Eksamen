@@ -51,34 +51,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>25x200 mm.trykimp. Brædt</th>
-                                <td style="text-align: center">360</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">Stk</td>
-                                <td>understernbrædder til for & bag ende</th>
-                            </tr>
-                            <tr>
-                                <td>25x200 mm.trykimp. Brædt</th>
-                                <td style="text-align: center">540</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">Stk</td>
-                                <td>understernbrædder til siderne</th>
-                            </tr>
-                            <tr>
-                                <td>25x125 mm.trykimp. Brædt</th>
-                                <td style="text-align: center">360</td>
-                                <td style="text-align: center">2</td>
-                                <td style="text-align: center">Stk</td>
-                                <td>understernbrædder til forenden</th>
-                            </tr>
-                            <tr>
-                                <td>25x125 mm.trykimp. Brædt</th>
-                                <td style="text-align: center">540</td>
-                                <td style="text-align: center">4</td>
-                                <td style="text-align: center">Stk</td>
-                                <td>oversternbrædder til siderne</th>
-                            </tr>
+                            <c:forEach var="materials" items="${requestScope.tableItems}">
+                                <tr>
+                                    <td>${materials.name}</td>
+                                    <td style="text-align: center">${materials.length}</td>
+                                    <td style="text-align: center">${materials.quantity}</td>
+                                    <td style="text-align: center">${materials.description}</td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
 
