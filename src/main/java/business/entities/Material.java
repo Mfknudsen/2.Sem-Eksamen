@@ -2,11 +2,11 @@ package business.entities;
 
 public class Material {
     private int id, length;
-    private String name, description, category;
+    private String name, description, category, unit;
     private float pricePerUnit;
     private int quantity = 0;
 
-    public Material(int id, String name, float pricePerUnit, int length, String description, String category)
+    public Material(int id, String name, float pricePerUnit, int length, String description, String category, String unit)
     {
        this.id = id;
        this.name = name;
@@ -14,22 +14,19 @@ public class Material {
        this.length = length;
        this.description = description;
        this.category = category;
+       this.unit = unit;
+    }
+
+    public String getUnit() {
+        return unit;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getQuantity() {
@@ -44,31 +41,15 @@ public class Material {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getLength() {
         return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public float getPricePerUnit() {
         return pricePerUnit;
-    }
-
-    public void setPricePerUnit(float pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
     }
 }
