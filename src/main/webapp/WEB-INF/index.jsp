@@ -37,9 +37,9 @@
 
                 <form method="post" action="${pageContext.request.contextPath}/fc/sendorder">
                     <label for="length">Længde</label>
-                    <input type="number" id="length" name="length" step="0.1", min="0">
+                    <input type="number" id="length" name="length" step="0.1" min="0">
                     <label for="width">Bredde</label>
-                    <input type="number" id="width" name="width" step="0.1", min="0">
+                    <input type="number" id="width" name="width" step="0.1" min="0">
                     <input type="submit">
                 </form>
             </c:if>
