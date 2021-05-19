@@ -21,7 +21,10 @@ public class PlannerMapper {
         List<Material> materialsList = new ArrayList<>();
 
         try (Connection connection = database.connect()) {
-            String sql = "SELECT * FROM `materials`";
+            String sql = "SELECT `materials`.`material_id`, " +
+                    "`materials`.`name`, `materials`.`pricePerUnit`, `materials`.`length`, `materials`.`description`, " +
+                    "`materials`.`category`, `unit`.`unit` " +
+                    "FROM materials INNER JOIN unit on `materials`.`material_id` = `unit`.`material_id`;";
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
@@ -32,11 +35,12 @@ public class PlannerMapper {
                     int lengthSQL = rs.getInt("length");
                     String description = rs.getString("description");
                     String category = rs.getString("category");
+                    String unit = rs.getString("unit");
                     if (category == null)
                     {
                         category = "-1";
                     }
-                    materialsList.add(new Material(id, name, pricePerUnit, lengthSQL, description, category));
+                    materialsList.add(new Material(id, name, pricePerUnit, lengthSQL, description, category, unit));
                 }
                 return materialsList;
             } catch (SQLException ex) {
@@ -111,16 +115,13 @@ public class PlannerMapper {
         return result;
     }
 
-    private List<Material> CalculateStolper(float length, List<Material> list) throws UserException {
+    private List<Material> CalculateStolper(float length, List<Material> list)
+    {
 //        return list<material> af stolpe med quantity sat til mere end 0
         List<Material> stolper = new ArrayList<>();
         int i = 0;
         while (!list.get(i).getCategory().equals("stolpe") && i < list.size()) {
             i++;
-        }
-        if (!list.get(i).getCategory().equals("stolpe"))
-        {
-            throw new UserException("Ingen stolpe fundet!");
         }
         Material stolpe = list.get(i);
         stolpe.setQuantity((int) ((length / 301 + 1) * 2));
@@ -128,16 +129,13 @@ public class PlannerMapper {
         return stolper;
     }
 
-    private List<Material> CalculateRem(List<Material> list) throws UserException {
+    private List<Material> CalculateRem(List<Material> list)
+    {
 //        return list<material> af rem med quantity sat til mere end 0
         List<Material> remmer = new ArrayList<>();
         int i = 0;
         while (!list.get(i).getCategory().equals("rem") && i < list.size()) {
             i++;
-        }
-        if (!list.get(i).getCategory().equals("rem"))
-        {
-            throw new UserException("Ingen rem fundet!");
         }
         Material rem = list.get(i);
         rem.setQuantity(2);
@@ -145,16 +143,13 @@ public class PlannerMapper {
         return remmer;
     }
 
-    private List<Material> CalculateSpær(float length, List<Material> list) throws UserException {
+    private List<Material> CalculateSpær(float length, List<Material> list)
+    {
 //        return list<material> af spær med quantity sat til mere end 0
         List<Material> xSpær = new ArrayList<>();
         int i = 0;
         while (!list.get(i).getCategory().equals("spær") && i < list.size()) {
             i++;
-        }
-        if (!list.get(i).getCategory().equals("spær"))
-        {
-            throw new UserException("Ingen spær fundet!");
         }
         Material spær = list.get(i);
         spær.setQuantity((int) ((length / 55) + 1));
@@ -162,7 +157,8 @@ public class PlannerMapper {
         return xSpær;
     }
 
-    public List<Material> Calculate(float length, float width) throws UserException {
+    public List<Material> Calculate(float length, float width) throws UserException
+    {
         List<Material> list = listOfMaterials();
         List<Material> materials = new ArrayList<>();
 
