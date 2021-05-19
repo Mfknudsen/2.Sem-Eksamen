@@ -56,77 +56,22 @@
                                     <td>${materials.name}</td>
                                     <td style="text-align: center">${materials.length}</td>
                                     <td style="text-align: center">${materials.quantity}</td>
+                                    <td style="text-align: center">${materials.unit}</td>
                                     <td style="text-align: center">${materials.description}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-
-                    <table class="table table-bordered border-dark table-sm">
-                        <thead>
-                        <tr>
-                            <th scope="col" style="width: 225px; text-align: center;">Beslag & Skruer</th>
-                            <th scope="col" style="width: 69px;"></th>
-                            <th scope="col" style="width: 60px;"></th>
-                            <th scope="col" style="width: 60px;"></th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>plastmo bundskruer 200 stk.</th>
-                            <td></td>
-                            <td style="text-align: center">3</td>
-                            <td style="text-align: center">pakke</td>
-                            <td>Skruer til tagplader</th>
-                        </tr>
-                        <tr>
-                            <td>hulbånd 1x20 mm. 10 mtr.</th>
-                            <td></td>
-                            <td style="text-align: center">2</td>
-                            <td style="text-align: center">Rulle</td>
-                            <td>Til vindkryds på spær</th>
-                        </tr>
-                        <tr>
-                            <td>universal 190 mm højre</th>
-                            <td></td>
-                            <td style="text-align: center">15</td>
-                            <td style="text-align: center">Stk</td>
-                            <td>Til montering af spær på rem</th>
-                        </tr>
-                        <tr>
-                            <td>universal 190 mm venstre</th>
-                            <td></td>
-                            <td style="text-align: center">15</td>
-                            <td style="text-align: center">Stk</td>
-                            <td>Til montering af spær på rem</th>
-                        </tr>
-                        </tbody>
-                    </table>
+                <form method="post" action="#">
+                    <div class="input-group mb-3">
+                        <input type="number" id="finalPrice" class="form-control border-dark" style="border-radius: 0;">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-dark" style="border-radius: 0">Send</button>
+                        </div>
+                    </div>
+                </form>
                 </div>
 
-                <div>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Dækningsgrad eller prisforslag</th>
-                            <th>Prisforslag ved salg</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>"Hard coded value ex. $800"</td>
-                            <td>
-                                <form method="get" id="customPrice">
-                                    <input type="number">
-                                </form>
-                                <p></p>
-                                <button type="submit" form="customPrice" value="Submit">Submit</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
 
              </c:if>
 
@@ -152,5 +97,17 @@
             </c:if>
 
         </div>
+        <script>
+            let sum = 0;
+            window.onload = function()
+            {
+
+                <c:forEach items="${requestScope.tableItems}" var="material">
+                sum += ${material.pricePerUnit} * ${material.quantity}
+                </c:forEach>
+
+                document.getElementById('finalPrice').setAttribute('placeholder', "Udregnede pris: " + sum);
+            }
+        </script>
     </jsp:body>
 </t:genericpage>
