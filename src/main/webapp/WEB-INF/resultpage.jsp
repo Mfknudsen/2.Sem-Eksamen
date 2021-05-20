@@ -32,10 +32,10 @@
                         <thead style="text-align: center;">
                         <tr>
                             <th scope="col" style="min-width: 225px;">Beskrivelse</th>
-                            <th scope="col" style="width: 69px;">Længde</th>
-                            <th scope="col" style="width: 60px;">Antal</th>
-                            <th scope="col" style="width: 60px;">Enhed</th>
-                            <th scope="col" style="width: 400px;">Beskrivelse</th>
+                            <th scope="col" style="min-width: 69px;">Længde</th>
+                            <th scope="col" style="min-width: 60px;">Antal</th>
+                            <th scope="col" style="min-width: 60px;">Enhed</th>
+                            <th scope="col" style="min-width: 300px;">Beskrivelse</th>
                         </tr>
                         </thead>
                     </table>
@@ -43,11 +43,11 @@
                     <table class="table table-bordered border-dark table-sm">
                         <thead>
                             <tr>
-                                <th scope="col" style="width: 225px; text-align: center;">Træ & Tagplader</th>
-                                <th scope="col" style="width: 69px;"></th>
-                                <th scope="col" style="width: 60px;"></th>
-                                <th scope="col" style="width: 60px;"></th>
-                                <th scope="col"></th>
+                                <th scope="col" style="min-width: 225px; text-align: center;">Træ & Tagplader</th>
+                                <th scope="col" style="min-width: 69px;"></th>
+                                <th scope="col" style="min-width: 60px;"></th>
+                                <th scope="col" style="min-width: 60px;"></th>
+                                <th scope="col" style="min-width: 300px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,19 +57,27 @@
                                     <td style="text-align: center">${materials.length}</td>
                                     <td style="text-align: center">${materials.quantity}</td>
                                     <td style="text-align: center">${materials.unit}</td>
-                                    <td style="text-align: center">${materials.description}</td>
+                                    <td>${materials.description}</td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 <form method="post" action="#">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" style="min-width: 387px;">
                         <input type="number" id="finalPrice" class="form-control border-dark" style="border-radius: 0;">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-dark" style="border-radius: 0">Send</button>
+                            <button type="button" onclick="updateNotify()" class="btn btn-outline-dark" style="border-radius: 0">Send</button>
                         </div>
                     </div>
                 </form>
+                <div class="alert alert-success alert-dismissible fade show" style="display: none; min-width: 400px">
+                    <p id="successSendMessage"></p>
+                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show" style="display: none; min-width: 400px">
+                    <p id="failSendMessage"></p>
+                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
+                </div>
                 </div>
 
 
@@ -82,19 +90,6 @@
                 <p><a href="fc/customerpage">Customer Page</a>
             </c:if>
 
-            <c:if test="${requestScope.error != null}">
-                <div class="alert alert-danger alert-dismissible fade show">
-                    ${requestScope.error}
-                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
-                </div>
-            </c:if>
-
-            <c:if test="${requestScope.update != null}">
-                <div class="alert alert-success alert-dismissible fade show">
-                    ${requestScope.update}
-                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
-                </div>
-            </c:if>
 
         </div>
         <script>
@@ -109,5 +104,26 @@
                 document.getElementById('finalPrice').setAttribute('placeholder', "Udregnede pris: " + sum);
             }
         </script>
+
+        <script>
+            const success = document.getElementById('successSendMessage');
+            const input = document.getElementById('finalPrice');
+            const failure = document.getElementById('failSendMessage');
+
+            function updateNotify()
+            {
+                if (input.value > 0)
+                {
+                    success.innerHTML = "Tilbud sendt!";
+                    success.parentElement.style.display='block';
+                    failure.parentElement.style.display='none';
+                    return
+                }
+                failure.innerHTML = "Kan ikke sende et tilbud til 0!"
+                failure.parentElement.style.display='block';
+                success.parentElement.style.display='none';
+            }
+        </script>
+
     </jsp:body>
 </t:genericpage>
