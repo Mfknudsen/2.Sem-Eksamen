@@ -23,9 +23,10 @@ public class CommandList extends CommandProtectedPage
         float length = Float.parseFloat(request.getParameter("length"));
         float width = Float.parseFloat(request.getParameter("width"));
 
-
         List<Material> listOfMaterials = plannaerFacade.MakeList(length, width);
         request.setAttribute("tableItems", listOfMaterials);
+        request.setAttribute("length", length);
+        request.setAttribute("width", width);
         return pageToShow;
     }
 }
