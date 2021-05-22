@@ -36,6 +36,7 @@
                 <p><a href="fc/customerpage">Customer Page</a>
 
                 <form method="post" action="${pageContext.request.contextPath}/fc/sendorder">
+                    <input hidden name="userID" value="${sessionScope.user.id}">
                     <label for="length">Længde</label>
                     <input type="number" id="length" name="length" step="0.1" min="0">
                     <label for="width">Bredde</label>

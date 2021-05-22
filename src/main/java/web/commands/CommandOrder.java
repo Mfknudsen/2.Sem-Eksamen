@@ -20,9 +20,10 @@ public class CommandOrder extends CommandUnprotectedPage
     {
         float length = Float.parseFloat(request.getParameter("length"));
         float width = Float.parseFloat(request.getParameter("width"));
+        int userID = Integer.parseInt(request.getParameter("userID"));
 
 
-        int update = orderFacade.add(1, length, width);
+        int update = orderFacade.add(userID, length, width);
         if (!(update > 0))
         {
             request.setAttribute("error", "Could not add inquiry. Possibly because user id does not exist");
