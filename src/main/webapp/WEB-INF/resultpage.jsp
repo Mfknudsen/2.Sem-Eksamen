@@ -62,24 +62,114 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                <form method="post" action="#">
-                    <div class="input-group mb-3" style="min-width: 387px;">
-                        <input type="number" id="finalPrice" class="form-control border-dark" style="border-radius: 0;">
-                        <div class="input-group-append">
-                            <button type="button" onclick="updateNotify()" class="btn btn-outline-dark" style="border-radius: 0">Send</button>
+
+                    <form method="post" action="#">
+                        <div class="input-group mb-3" style="min-width: 387px;">
+                            <input type="number" id="finalPrice" class="form-control border-dark" style="border-radius: 0;">
+                            <div class="input-group-append">
+                                <button type="button" onclick="updateNotify()" class="btn btn-outline-dark" style="border-radius: 0">Send</button>
+                            </div>
                         </div>
+                    </form>
+
+                    <div class="alert alert-success alert-dismissible fade show" style="display: none; min-width: 400px">
+                        <p id="successSendMessage"></p>
+                        <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
                     </div>
-                </form>
-                <div class="alert alert-success alert-dismissible fade show" style="display: none; min-width: 400px">
-                    <p id="successSendMessage"></p>
-                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
-                </div>
-                <div class="alert alert-danger alert-dismissible fade show" style="display: none; min-width: 400px">
-                    <p id="failSendMessage"></p>
-                    <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
-                </div>
+
+                    <div class="alert alert-danger alert-dismissible fade show" style="display: none; min-width: 400px">
+                        <p id="failSendMessage"></p>
+                        <button type="button" class="btn-close" onclick="this.parentElement.style.display='none';"></button>
+                    </div>
                 </div>
 
+                <svg
+                     height="50%" width="50%"  viewBox="0 0 855 690"
+                     preserveAspectRatio="xMinYMin">
+
+                    <svg
+                         x="75"
+                         y="55"
+                         width="800"
+                         height="530"
+                         viewBox="0 0 780 600"
+                         preserveAspectRatio="xMinYMin">
+
+                        <!--box-->
+                        <rect x="0" y="0" width="780" height="600"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+
+                        <!--horizontal lines-->
+                        <rect x="5" y="64" width="770" height="6"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+                        <rect x="5" y="536" width="770" height="6"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+
+                        <!--top boxes-->
+                        <rect x="80" y="55" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+                        <rect x="400" y="55" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+                        <rect x="680" y="55" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+
+                        <!--bottom boxes-->
+                        <rect x="80" y="530" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+                        <rect x="400" y="530" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+                        <rect x="680" y="530" width="20" height="20"
+                              style="stroke:#000000; fill: #ffffff"></rect>
+
+                        <!--dotted lines-->
+                        <line x1="50" y1="65" x2="600" y2="545"
+                              style="stroke:#000000; stroke-dasharray: 10 5;"></line>
+                        <line x1="600" y1="65" x2="50" y2="545"
+                              style="stroke:#000000; stroke-dasharray: 10 5;"></line>
+
+                        <!--normal lines-->
+                        <line x1="5" y1="0" x2="5" y2="600"
+                              style="stroke:#000000;"></line>
+                        <line x1="775" y1="0" x2="775" y2="600"
+                              style="stroke:#000000;"></line>
+                    </svg>
+
+                    <defs>
+                        <marker
+                                id="beginArrow"
+                                markerWidth="12"
+                                markerHeight="12"
+                                refX="0"
+                                refY="6"
+                                orient="auto">
+                            <path d="M0,6 L12,0 L12,12 L0,6" style="fill: #000000;"></path>
+                        </marker>
+                        <marker
+                                id="endArrow"
+                                markerWidth="12"
+                                markerHeight="12"
+                                refX="12"
+                                refY="6"
+                                orient="auto">
+                            <path d="M0,0 L12,6 L0,12 L0,0 " style="fill: #000000;"></path>
+                        </marker>
+                    </defs>
+
+                    <!--y-line-->
+                    <line x1="50"  y1="590" x2="50"   y2="50"
+                          style="stroke: #000000;
+                          marker-start: url(#beginArrow);
+                          marker-end: url(#endArrow);"></line>
+
+                    <!--x-line-->
+                    <line x1="70"  y1="610" x2="770"   y2="610"
+                          style="stroke: #000000;
+                          marker-start: url(#beginArrow);
+                          marker-end: url(#endArrow);"></line>
+
+                    <text style="text-anchor: middle" transform="translate(30,300) rotate(-90)">${requestScope.width} cm</text>
+                    <text style="text-anchor: middle" transform="translate(428,626)">${requestScope.length} cm</text>
+                </svg>
 
              </c:if>
 
@@ -89,9 +179,8 @@
                     are logged in as a customer</p>
                 <p><a href="fc/customerpage">Customer Page</a>
             </c:if>
-
-
         </div>
+
         <script>
             let sum = 0;
             window.onload = function()
