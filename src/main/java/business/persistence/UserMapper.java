@@ -25,8 +25,8 @@ public class UserMapper
                 ps.setString(1, user.getEmail());
                 ps.setString(2, user.getPassword());
                 ps.setString(3, user.getName());
-                ps.setString(4, user.getPhoneNumber());
-                ps.setString(3, user.getRole());
+                ps.setLong(4, user.getPhoneNumber());
+                ps.setString(5, user.getRole());
                 ps.executeUpdate();
                 ResultSet ids = ps.getGeneratedKeys();
                 ids.next();
