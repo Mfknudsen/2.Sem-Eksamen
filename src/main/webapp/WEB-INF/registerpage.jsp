@@ -26,7 +26,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-1 col-form-label" for="phoneNr">Phone</label>
                     <div class="col-sm-4">
-                        <input id="phoneNr" class="form-control" type="text" name="phoneNr" value="${param.phoneNr}" placeholder="Enter phone number">
+                        <input id="phoneNr" class="form-control" type="number" name="phoneNr" value="${param.phoneNr}" placeholder="Enter phone number">
                     </div>
                 </div>
                 <div class="row mb-3">
